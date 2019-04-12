@@ -1,0 +1,12 @@
+{
+  "name": "lamock",
+  "version": "0.1.5",
+  "description": "Development server for Node.js Lambda functions",
+  "main": "index.js",
+  "scripts": {
+    "build": "pack build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
