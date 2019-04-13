@@ -3,8 +3,8 @@ const headers = { "content-type": "text/plain" };
 function getErrorHandler (res) {
   return function (error) {
     console.error("error: ", error);
-    res.writeHead(result.statusCode || 400, headers);
-    res.write(error);
+    res.writeHead(error.statusCode || 400, headers);
+    res.write(error.message || error);
     res.end();
   };
 }

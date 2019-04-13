@@ -10,7 +10,7 @@ const { PORT = 3000 } = process.env;
 
 function serve (handler) {
   return http
-    .createServer(function (req, res) {
+    .createServer(async function (req, res) {
       const url = parse(req.url, true);
       const queryStringParameters = url.query;
 
@@ -18,7 +18,11 @@ function serve (handler) {
         return res.end();
       }
 
-      return handler({ queryStringParameters }, context(req, res), callback(req, res));
+      const result = await handler({ queryStringParameters }, context(req, res), callback(req, res));
+
+      if (result) {
+        return callback(req, res)(null, result);
+      }
     })
     .listen(PORT, () => {
       console.log(`Handler listening on localhost:${PORT}`);
